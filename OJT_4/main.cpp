@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
+#include <locale>
 
 using namespace std;
 
@@ -22,18 +24,38 @@ public:
 
 class Add : public Operator{
     // write
+    public:
+        virtual void calculate() {
+            setResult(getNum1() + getNum2());
+            return;
+        }
 };
 
 class Subtract : public Operator{
     // write
+    public:
+        virtual void calculate() {
+            setResult(getNum1() - getNum2());
+            return;
+        }
 };
 
 class Multiply : public Operator{
     // write
+    public:
+        virtual void calculate() {
+            setResult(getNum1() * getNum2());
+            return;
+        }
 };
 
 class Divide : public Operator{
     // write
+    public:
+        virtual void calculate() {
+            setResult(getNum1() / (double) getNum2());
+            return;
+        }
 };
 
 int main()
@@ -48,10 +70,103 @@ int main()
     char sign;
 
     while (1) {
-        cout << "ìˆ˜ì‹ì„ ìž…ë ¥í•˜ì„¸ìš”. (break ìž…ë ¥ ì‹œ ì¢…ë£Œ)" << endl;
+        cout << "¼ö½ÄÀ» ÀÔ·ÂÇÏ¼¼¿ä. (break ÀÔ·Â ½Ã Á¾·á)" << endl;
         getline(cin, input_exp);
 
         // write
+        // °ø¹é Á¦°Å
+        string inputstr = input_exp;
+        inputstr.erase(remove(inputstr.begin(), inputstr.end(), ' '), inputstr.end());
+
+        if (inputstr.empty()) {
+            cout << "ÀÔ·Â°ªÀÌ ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl << endl;
+            continue;
+        }
+
+        // ¼Ò¹®ÀÚ·Î ÀÏ°ý º¯°æ
+        for (int i = 0; i < inputstr.size(); i++) {
+            inputstr[i] = tolower(inputstr[i]);
+        }
+
+        if (inputstr == "break") {
+            cout << "break°¡ ÀÔ·ÂµÇ¾î ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù." << endl;
+            exit(0);
+        }
+
+        // ¸Ç ¾Õ ±ÛÀÚ°¡ +ÀÌ¸é Á¦°Å
+        if (inputstr[0] == '+') {
+            inputstr.erase(0, 1);
+        }
+
+        int index = -1;
+
+        if (inputstr.find('*') != string::npos) {
+            index = inputstr.find('*');
+            sign = '*';
+        }
+        else if (input_exp.find('/') != string::npos) {
+            index = inputstr.find('/');
+            sign = '/';
+        }
+        else if (inputstr.find('+') != string::npos) {
+            index = inputstr.find('+');
+            sign = '+';
+        }
+        // À½¼öÀÏ ¶§ Ãß°¡ Ã³¸®
+        else if (inputstr.find('-') != string::npos) {
+            if (inputstr.find('--') == string::npos && inputstr.find('-', inputstr.find('-') + 1) != string::npos) {
+                index = inputstr.find('-', inputstr.find('-') + 1);
+            }
+            else {
+                index = inputstr.find('-');
+            }
+            sign = '-';
+        }
+        else {
+            cout << "¿Ã¹Ù¸£Áö ¾ÊÀº ¼ö½ÄÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl << endl;
+            continue;
+        }
+
+        if (index != -1) {
+            try {
+                string n1 = inputstr;
+                n1.resize(index);
+                num1 = stoi(n1);
+                num2 = stoi(inputstr.substr(index + 1));
+            }
+            catch(invalid_argument&) {
+                // cout << "num1 : " << num1 << ", num2 : " << num2 << endl << endl;
+                cout << "¿Ã¹Ù¸£Áö ¾ÊÀº ¼öÀÔ´Ï´Ù. Á¤¼ö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl << endl;
+                continue;
+            }
+        }
+
+        switch (sign) {
+                case '+' :
+                    a.setNumber(num1, num2);
+                    a.calculate();
+                    cout << input_exp << " °è»ê °á°ú´Â " << a.getResult() << "ÀÔ´Ï´Ù." << endl << endl;
+                    break;
+                case '-' :
+                    s.setNumber(num1, num2);
+                    s.calculate();
+                    cout << input_exp << " °è»ê °á°ú´Â " << s.getResult() << "ÀÔ´Ï´Ù." << endl << endl;
+                    break;
+                case '*' :
+                    m.setNumber(num1, num2);
+                    m.calculate();
+                    cout << input_exp << " °è»ê °á°ú´Â " << m.getResult() << "ÀÔ´Ï´Ù." << endl << endl;
+                    break;
+                case '/' :
+                    d.setNumber(num1, num2);
+                    d.calculate();
+                    cout.precision(4);
+                    cout << input_exp << " °è»ê °á°ú´Â " << d.getResult() << "ÀÔ´Ï´Ù." << endl << endl;
+                    break;
+                default :
+                    cout << "¿Ã¹Ù¸£Áö ¾ÊÀº ¼ö½ÄÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl << endl;
+                    continue;
+        }
     }
     return 0;
 }
