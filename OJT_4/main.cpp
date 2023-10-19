@@ -20,22 +20,18 @@ public:
     double getResult() { calculate(); return result; }
 };
 
-// 자식 클래스 : 더하기
 class Add : public Operator{
     // write
 };
 
-// 자식 클래스 : 빼기
 class Subtract : public Operator{
     // write
 };
 
-// 자식 클래스 : 곱하기
 class Multiply : public Operator{
     // write
 };
 
-// 자식 클래스 : 나누기
 class Divide : public Operator{
     // write
 };
