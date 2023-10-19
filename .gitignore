@@ -39,9 +39,13 @@
 # specific to CodeBlocks IDE
 *.layout
 *.depend
+*/*.layout
+*/*.depend
 # generated directories
 bin/
 obj/
+*/bin/
+*/obj/
 
 ### VisualStudioCode ###
 .vscode/*
@@ -50,16 +54,20 @@ obj/
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+*/.vscode/*
 
 # Local History for Visual Studio Code
 .history/
+*/.history/
 
 # Built Visual Studio Code Extensions
 *.vsix
+*/*.vsix
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
 .ionide
+*/.ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,codeblocks,c++
