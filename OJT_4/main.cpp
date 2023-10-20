@@ -2,6 +2,7 @@
 #include <string>
 #include <algorithm>
 #include <locale>
+#include <regex>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ class Add : public Operator{
     // write
     public:
         virtual void calculate() {
-            setResult(getNum1() + getNum2());
+            setResult(getNum1() + (double) getNum2());
             return;
         }
 };
@@ -35,7 +36,7 @@ class Subtract : public Operator{
     // write
     public:
         virtual void calculate() {
-            setResult(getNum1() - getNum2());
+            setResult(getNum1() - (double) getNum2());
             return;
         }
 };
@@ -44,7 +45,7 @@ class Multiply : public Operator{
     // write
     public:
         virtual void calculate() {
-            setResult(getNum1() * getNum2());
+            setResult(getNum1() * (double) getNum2());
             return;
         }
 };
@@ -93,9 +94,17 @@ int main()
             exit(0);
         }
 
-        // 맨 앞 글자가 +이면 제거
-        if (inputstr[0] == '+') {
-            inputstr.erase(0, 1);
+        std::regex pattern("^-?\\d+(?:[-+*/]-?\\d+)?$");
+
+        if (!std::regex_match(inputstr, pattern)) {
+            if (inputstr.front() == '+' || inputstr.front() != '+' && inputstr.find('+', inputstr.find('+') + 1) - inputstr.find('+') == 1) {
+                std::cout << "양수는 허용하지 않습니다. 다시 입력해주세요." << std::endl << std::endl;
+                continue;
+            }
+            else {
+                std::cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << std::endl << std::endl;
+                continue;
+            }
         }
 
         int index = -1;
@@ -114,7 +123,7 @@ int main()
         }
         // 음수일 때 추가 처리
         else if (inputstr.find('-') != string::npos) {
-            if (inputstr.find('--') == string::npos && inputstr.find('-', inputstr.find('-') + 1) != string::npos) {
+            if (inputstr.front() == '-' && inputstr.find('-', inputstr.find('-') + 1) != string::npos) {
                 index = inputstr.find('-', inputstr.find('-') + 1);
             }
             else {
@@ -134,9 +143,13 @@ int main()
                 num1 = stoi(n1);
                 num2 = stoi(inputstr.substr(index + 1));
             }
-            catch(invalid_argument&) {
+            catch (invalid_argument&) {
                 // cout << "num1 : " << num1 << ", num2 : " << num2 << endl << endl;
                 cout << "올바르지 않은 수입니다. 정수를 입력해주세요." << endl << endl;
+                continue;
+            }
+            catch (out_of_range) {
+                cout << "-2,147,483,648 ~ 2,147,483,647 사이의 수를 입력해주세요." << endl << endl;
                 continue;
             }
         }
@@ -145,22 +158,32 @@ int main()
                 case '+' :
                     a.setNumber(num1, num2);
                     a.calculate();
+                    std::cout<<fixed;
+                    cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << a.getResult() << "입니다." << endl << endl;
                     break;
                 case '-' :
                     s.setNumber(num1, num2);
                     s.calculate();
+                    std::cout<<fixed;
+                    cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << s.getResult() << "입니다." << endl << endl;
                     break;
                 case '*' :
                     m.setNumber(num1, num2);
                     m.calculate();
+                    std::cout<<fixed;
+                    cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << m.getResult() << "입니다." << endl << endl;
                     break;
                 case '/' :
+                    if (num2 == 0) {
+                        cout << "0으로는 나눌 수 없습니다. 다시 입력해주세요." << endl << endl;
+                        continue;
+                    }
                     d.setNumber(num1, num2);
                     d.calculate();
-                    cout.precision(4);
+                    cout.precision(3);
                     cout << input_exp << " 계산 결과는 " << d.getResult() << "입니다." << endl << endl;
                     break;
                 default :
