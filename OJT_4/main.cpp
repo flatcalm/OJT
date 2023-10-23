@@ -157,19 +157,19 @@ int main()
         switch (sign) {
                 case '+' :
                     a.setNumber(num1, num2);
-                    std::cout<<fixed;
+                    cout << fixed;
                     cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << a.getResult() << "입니다." << endl << endl;
                     break;
                 case '-' :
                     s.setNumber(num1, num2);
-                    std::cout<<fixed;
+                    cout << fixed;
                     cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << s.getResult() << "입니다." << endl << endl;
                     break;
                 case '*' :
                     m.setNumber(num1, num2);
-                    std::cout<<fixed;
+                    cout << fixed;
                     cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << m.getResult() << "입니다." << endl << endl;
                     break;
@@ -179,8 +179,9 @@ int main()
                         continue;
                     }
                     d.setNumber(num1, num2);
-                    cout.precision(3);
-                    cout << input_exp << " 계산 결과는 " << d.getResult() << "입니다." << endl << endl;
+                    cout << fixed;
+                    cout.precision(10);
+                    cout << input_exp << " 계산 결과는 " << d.getResult() << "입니다. (소수점 10자리까지 표시)" << endl << endl;
                     break;
                 default :
                     cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << endl << endl;
