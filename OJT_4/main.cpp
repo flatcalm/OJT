@@ -25,7 +25,7 @@ public:
 
 class Add : public Operator{
     // write
-    public:
+    protected:
         virtual void calculate() {
             setResult(getNum1() + (double) getNum2());
             return;
@@ -34,7 +34,7 @@ class Add : public Operator{
 
 class Subtract : public Operator{
     // write
-    public:
+    protected:
         virtual void calculate() {
             setResult(getNum1() - (double) getNum2());
             return;
@@ -43,7 +43,7 @@ class Subtract : public Operator{
 
 class Multiply : public Operator{
     // write
-    public:
+    protected:
         virtual void calculate() {
             setResult(getNum1() * (double) getNum2());
             return;
@@ -52,7 +52,7 @@ class Multiply : public Operator{
 
 class Divide : public Operator{
     // write
-    public:
+    protected:
         virtual void calculate() {
             setResult(getNum1() / (double) getNum2());
             return;
@@ -157,21 +157,18 @@ int main()
         switch (sign) {
                 case '+' :
                     a.setNumber(num1, num2);
-                    a.calculate();
                     std::cout<<fixed;
                     cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << a.getResult() << "입니다." << endl << endl;
                     break;
                 case '-' :
                     s.setNumber(num1, num2);
-                    s.calculate();
                     std::cout<<fixed;
                     cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << s.getResult() << "입니다." << endl << endl;
                     break;
                 case '*' :
                     m.setNumber(num1, num2);
-                    m.calculate();
                     std::cout<<fixed;
                     cout.precision(0);
                     cout << input_exp << " 계산 결과는 " << m.getResult() << "입니다." << endl << endl;
@@ -182,7 +179,6 @@ int main()
                         continue;
                     }
                     d.setNumber(num1, num2);
-                    d.calculate();
                     cout.precision(3);
                     cout << input_exp << " 계산 결과는 " << d.getResult() << "입니다." << endl << endl;
                     break;
