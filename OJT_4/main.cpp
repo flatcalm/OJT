@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-#include <locale>
 #include <regex>
+#include <cmath>
 
 using namespace std;
 
@@ -24,39 +23,39 @@ public:
 };
 
 class Add : public Operator{
-    // write
-    protected:
-        virtual void calculate() {
-            setResult(getNum1() + (double) getNum2());
-            return;
-        }
+// write
+protected:
+    virtual void calculate() {
+        setResult(getNum1() + (double) getNum2());
+        return;
+    }
 };
 
 class Subtract : public Operator{
-    // write
-    protected:
-        virtual void calculate() {
-            setResult(getNum1() - (double) getNum2());
-            return;
-        }
+// write
+protected:
+    virtual void calculate() {
+        setResult(getNum1() - (double) getNum2());
+        return;
+    }
 };
 
 class Multiply : public Operator{
-    // write
-    protected:
-        virtual void calculate() {
-            setResult(getNum1() * (double) getNum2());
-            return;
-        }
+// write
+protected:
+    virtual void calculate() {
+        setResult(getNum1() * (double) getNum2());
+        return;
+    }
 };
 
 class Divide : public Operator{
-    // write
-    protected:
-        virtual void calculate() {
-            setResult(getNum1() / (double) getNum2());
-            return;
-        }
+// write
+protected:
+    virtual void calculate() {
+        setResult(getNum1() / (double) getNum2());
+        return;
+    }
 };
 
 int main()
@@ -94,16 +93,22 @@ int main()
             exit(0);
         }
 
-        std::regex pattern("^-?\\d+(?:[-+*/]-?\\d+)?$");
+        std::regex pattern("^-?\\d+[-+*/]-?\\d+?$");
 
         if (!std::regex_match(inputstr, pattern)) {
-            if (inputstr.front() == '+' || inputstr.front() != '+' && inputstr.find('+', inputstr.find('+') + 1) - inputstr.find('+') == 1) {
+            if (inputstr.front() == '+') {
                 std::cout << "양수는 허용하지 않습니다. 다시 입력해주세요." << std::endl << std::endl;
                 continue;
             }
-            else {
-                std::cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << std::endl << std::endl;
-                continue;
+            else if (inputstr.front() != '+') {
+                if (inputstr.find('+', inputstr.find('+') + 1) - inputstr.find('+') == 1) {
+                    std::cout << "양수는 허용하지 않습니다. 다시 입력해주세요." << std::endl << std::endl;
+                    continue;
+                }
+                else {
+                    std::cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << std::endl << std::endl;
+                    continue;
+                }
             }
         }
 
@@ -123,8 +128,14 @@ int main()
         }
         // 음수일 때 추가 처리
         else if (inputstr.find('-') != string::npos) {
-            if (inputstr.front() == '-' && inputstr.find('-', inputstr.find('-') + 1) != string::npos) {
-                index = inputstr.find('-', inputstr.find('-') + 1);
+            if (inputstr.front() == '-') {
+                if (inputstr.find('-', inputstr.find('-') + 1) != string::npos) {
+                    index = inputstr.find('-', inputstr.find('-') + 1);
+                }
+                else {
+                    std::cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << std::endl << std::endl;
+                    continue;
+                }
             }
             else {
                 index = inputstr.find('-');
@@ -148,45 +159,63 @@ int main()
                 cout << "올바르지 않은 수입니다. 정수를 입력해주세요." << endl << endl;
                 continue;
             }
-            catch (out_of_range) {
+            catch (out_of_range&) {
                 cout << "-2,147,483,648 ~ 2,147,483,647 사이의 수를 입력해주세요." << endl << endl;
                 continue;
             }
         }
 
+        double result;
+
         switch (sign) {
-                case '+' :
-                    a.setNumber(num1, num2);
-                    cout << fixed;
-                    cout.precision(0);
-                    cout << input_exp << " 계산 결과는 " << a.getResult() << "입니다." << endl << endl;
-                    break;
-                case '-' :
-                    s.setNumber(num1, num2);
-                    cout << fixed;
-                    cout.precision(0);
-                    cout << input_exp << " 계산 결과는 " << s.getResult() << "입니다." << endl << endl;
-                    break;
-                case '*' :
-                    m.setNumber(num1, num2);
-                    cout << fixed;
-                    cout.precision(0);
-                    cout << input_exp << " 계산 결과는 " << m.getResult() << "입니다." << endl << endl;
-                    break;
-                case '/' :
-                    if (num2 == 0) {
-                        cout << "0으로는 나눌 수 없습니다. 다시 입력해주세요." << endl << endl;
-                        continue;
-                    }
-                    d.setNumber(num1, num2);
-                    cout << fixed;
-                    cout.precision(10);
-                    cout << input_exp << " 계산 결과는 " << d.getResult() << "입니다. (소수점 10자리까지 표시)" << endl << endl;
-                    break;
-                default :
-                    cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << endl << endl;
+            case '+' :
+                a.setNumber(num1, num2);
+                result = a.getResult();
+                break;
+            case '-' :
+                s.setNumber(num1, num2);
+                result = s.getResult();
+                break;
+            case '*' :
+                m.setNumber(num1, num2);
+                result = m.getResult();
+                break;
+            case '/' :
+                if (num2 == 0) {
+                    cout << "0으로는 나눌 수 없습니다. 다시 입력해주세요." << endl << endl;
                     continue;
+                }
+                d.setNumber(num1, num2);
+                result = d.getResult();
+                break;
+            default :
+                cout << "올바르지 않은 수식입니다. 다시 입력해주세요." << endl << endl;
+                continue;
         }
+
+        cout << fixed;
+
+        if (sign != '/') {
+            cout.precision(0);
+        }
+        else {
+            // 결과값 자릿수 계산
+            double x = result;
+            int count = 0;
+            while (x) {
+                x = result * pow(10, count);
+                x = fmod(x, 1.0);
+                count++;
+            }
+
+            if (count > 9) {
+                cout.precision(9);
+            }
+            else {
+                cout.precision(count - 1);
+            }
+        }
+        cout << input_exp << " 계산 결과는 " << result << "입니다." << endl << endl;
     }
     return 0;
 }
