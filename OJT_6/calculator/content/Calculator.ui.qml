@@ -15,10 +15,10 @@ ColumnLayout {
 
     TextInput {
         id: text
-        height: 120
         Layout.alignment: top
         Layout.fillWidth: true
         Layout.fillHeight: true
+        Layout.preferredHeight: 120
         horizontalAlignment: Text.AlignRight
         verticalAlignment: Text.AlignVCenter
         font.family: "맑은 고딕"
@@ -34,116 +34,132 @@ ColumnLayout {
         rows: 4
         columns: 4
 
-        Button {
+        RoundButton {
             id: btn7
             text: "7"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn8
             text: "8"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn9
             text: "9"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btnSum
             text: "+"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn4
             text: "4"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn5
             text: "5"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn6
             text: "6"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btnSub
             text: "+"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn1
             text: "1"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn2
             text: "2"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn3
             text: "3"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btnMul
             text: "*"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btnClr
             text: "clear"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btn0
             text: "0"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btnEq
             text: "="
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
-        Button {
+        RoundButton {
             id: btnDvd
             text: "/"
             Layout.fillHeight: true
             Layout.fillWidth: true
+            radius: 0
         }
 
     }
