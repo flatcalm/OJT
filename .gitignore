@@ -70,4 +70,7 @@ obj/
 .ionide
 */.ionide
 
+#Build
+*/build***/
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,codeblocks,c++
