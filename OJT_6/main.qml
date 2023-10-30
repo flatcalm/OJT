@@ -14,8 +14,7 @@ Window {
         anchors.fill: parent
 
         TextInput {
-            id: text
-            Layout.alignment: top
+            id: oper
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredWidth: 360
@@ -25,11 +24,15 @@ Window {
             font.family: "맑은 고딕"
             font.pointSize: 20
             rightPadding: 15
+            focus: true
+            onAccepted: {
+                Calculator.input_string = oper.text
+                oper.text = Calculator.calculate()
+            }
         }
 
         GridLayout {
             id: gridLayout
-            Layout.alignment: bottom
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredWidth: 360
@@ -42,7 +45,10 @@ Window {
                 text: "7"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "7"
+                onClicked: {
+                    oper.text += "7"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -50,7 +56,10 @@ Window {
                 text: "8"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "8"
+                onClicked: {
+                    oper.text += "8"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -58,7 +67,10 @@ Window {
                 text: "9"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "9"
+                onClicked: {
+                    oper.text += "9"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -66,7 +78,10 @@ Window {
                 text: "+"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += " + "
+                onClicked: {
+                    oper.text += " + "
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -74,7 +89,10 @@ Window {
                 text: "4"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "4"
+                onClicked: {
+                    oper.text += "4"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -82,7 +100,10 @@ Window {
                 text: "5"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "5"
+                onClicked: {
+                    oper.text += "5"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -90,7 +111,10 @@ Window {
                 text: "6"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "6"
+                onClicked: {
+                    oper.text += "6"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -98,7 +122,10 @@ Window {
                 text: "-"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += " - "
+                onClicked: {
+                    oper.text += " - "
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -106,7 +133,10 @@ Window {
                 text: "1"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "1"
+                onClicked: {
+                    oper.text += "1"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -114,7 +144,10 @@ Window {
                 text: "2"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "2"
+                onClicked: {
+                    oper.text += "2"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -122,7 +155,10 @@ Window {
                 text: "3"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "3"
+                onClicked: {
+                    oper.text += "3"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -130,7 +166,10 @@ Window {
                 text: "*"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += " * "
+                onClicked: {
+                    oper.text += " * "
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -138,7 +177,10 @@ Window {
                 text: "clear"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text = ""
+                onClicked: {
+                    oper.text = ""
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -146,7 +188,10 @@ Window {
                 text: "0"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += "0"
+                onClicked: {
+                    oper.text += "0"
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -154,6 +199,12 @@ Window {
                 text: "="
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                onClicked: {
+                    Calculator.input_string = oper.text
+                    Calculator.result = Calculator.calculate()
+                    oper.text = Calculator.result
+                    oper.forceActiveFocus()
+                }
             }
 
             Button {
@@ -161,7 +212,10 @@ Window {
                 text: "/"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                onClicked: text.text += " / "
+                onClicked: {
+                    oper.text += " / "
+                    oper.forceActiveFocus()
+                }
             }
 
         }

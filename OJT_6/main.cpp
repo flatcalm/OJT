@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <calculator.h>
 
 
 int main(int argc, char *argv[])
@@ -18,6 +20,9 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+    Calculator *ca = new Calculator();
+    engine.rootContext()->setContextProperty("Calculator", ca);
 
     return app.exec();
 }
