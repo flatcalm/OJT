@@ -16,11 +16,6 @@ double Calculator::calculate()
     int num1, num2;
     char sign;
 
-    stringstream stream(input_exp);
-    stream >> num1;
-    stream >> sign;
-    stream >> num2;
-
     // 공백 제거
     string inputstr = input_exp;
     inputstr.erase(remove(inputstr.begin(), inputstr.end(), ' '), inputstr.end());
