@@ -31,16 +31,15 @@ public:
     void setInput_string(const QVariant input_string) { this->input_string = input_string; emit input_stringChanged(); }
     QVariant getInput_string() { return input_string; }
 
-    double add();
-    double subtract();
-    double multiply();
-    double divide();
+    void add();
+    void subtract();
+    void multiply();
+    void divide();
     Q_INVOKABLE double calculate();
 
 signals:
     void input_stringChanged();
     void resultChanged();
-
 };
 
 #endif // CALCULATOR_H

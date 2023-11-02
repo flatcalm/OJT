@@ -21,13 +21,39 @@ Window {
             Layout.preferredHeight: 120
             horizontalAlignment: Text.AlignRight
             verticalAlignment: Text.AlignVCenter
-            font.family: "맑은 고딕"
+            font.family: "D2Coding"
             font.pointSize: 20
             rightPadding: 15
             focus: true
+
+            // 입력값 제한 (숫자, 사칙연산, 공백)
+            validator: RegExpValidator { regExp: /^[\d\s\+\-\*\.\/]*$/ }
+
+            Keys.onPressed: {
+                // 숫자와 연산자가 아닌 경우 clear
+                if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) && event.key !== Qt.Key_Equal) {
+                    oper.text = "";
+                }
+                // 결과값 0일 때 입력 시 0 지우기
+                else if (oper.text === "0" || oper.text === "0.0") {
+                    oper.text = "";
+                }
+                // = 키를 누르면 바로 계산
+                else if (event.key === Qt.Key_Equal) {
+                    Calculator.input_string = oper.text;
+                    var result = Calculator.calculate();
+                    // 결과 값을 10진수 문자열로 변환하고 표시
+                    var resultStr = result.toString();
+                    oper.text = resultStr;
+                }
+            }
+
+            // Enter 입력(입력값 제출)하면 바로 계산
             onAccepted: {
-                Calculator.input_string = oper.text
-                oper.text = Calculator.calculate()
+                Calculator.input_string = oper.text;
+                var result = Calculator.calculate();
+                var resultStr = result.toString();
+                oper.text = resultStr;
             }
         }
 
@@ -201,8 +227,9 @@ Window {
                 Layout.fillWidth: true
                 onClicked: {
                     Calculator.input_string = oper.text
-                    Calculator.result = Calculator.calculate()
-                    oper.text = Calculator.result
+                    var result = Calculator.calculate();
+                    var resultStr = result.toString();
+                    oper.text = resultStr;
                     oper.forceActiveFocus()
                 }
             }

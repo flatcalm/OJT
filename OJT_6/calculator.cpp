@@ -11,7 +11,6 @@ Calculator::~Calculator(){}
 
 double Calculator::calculate()
 {
-
     string input_exp = input_string.toString().toStdString();
     int num1, num2;
     char sign;
@@ -85,40 +84,43 @@ double Calculator::calculate()
         }
     }
 
+    setNumber(num1, num2);
+
     switch (sign) {
         case '+' :
-            setNumber(num1, num2);
-            return add();
+            add();
+            break;
         case '-' :
-            setNumber(num1, num2);
-        return subtract();
+            subtract();
+            break;
         case '*' :
-            setNumber(num1, num2);
-            return multiply();
+            multiply();
+            break;
         case '/' :
             if (num2 == 0) { // 0으로 나누려고 할 때
                 return 0;
             }
-            setNumber(num1, num2);
-            return divide();
+            divide();
+            break;
         default : // 수식이 +, -, *, / 아닐 때
             return 0;
     }
 
+    return getResult();
 }
 
-double Calculator::add() {
-    return getNum1() + (double) getNum2();
+void Calculator::add() {
+    setResult(getNum1() + (double) getNum2());
 }
 
-double Calculator::subtract() {
-    return getNum1() - (double) getNum2();
+void Calculator::subtract() {
+    setResult(getNum1() - (double) getNum2());
 }
 
-double Calculator::multiply() {
-    return getNum1() * (double) getNum2();
+void Calculator::multiply() {
+    setResult(getNum1() * (double) getNum2());
 }
 
-double Calculator::divide() {
-    return getNum1() / (double) getNum2();
+void Calculator::divide() {
+    setResult(getNum1() / (double) getNum2());
 }
