@@ -11,7 +11,7 @@ Calculator::~Calculator(){}
 
 double Calculator::calculate()
 {
-    string input_exp = input_string.toString().toStdString();
+    string input_exp = getInput_string().toString().toStdString();
     int num1, num2;
     char sign;
 
@@ -106,6 +106,7 @@ double Calculator::calculate()
             return 0;
     }
 
+    // setInput_string(QVariant::fromValue(to_string(getResult())));
     return getResult();
 }
 
