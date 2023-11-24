@@ -35,12 +35,14 @@ Window {
                     oper.text = "";
                 }
                 // 결과값 0일 때 입력 시 0 지우기
-                else if (oper.text === "0" || oper.text === "0.0") {
+                else if (oper.text == "0") {
                     oper.text = "";
                 }
                 // = 키를 누르면 바로 계산
                 else if (event.key === Qt.Key_Equal) {
                     Calculator.input_string = oper.text;
+                    // 입력값을 넘겨준 뒤 입력된 =을 지움
+                    oper.text = "";
                     var result = Calculator.calculate();
                     // 결과 값을 10진수 문자열로 변환하고 표시
                     var resultStr = result.toString();
@@ -72,6 +74,10 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    // 결과값 0일 때 입력 시 0 지우기
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "7"
                     oper.forceActiveFocus()
                 }
@@ -83,6 +89,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "8"
                     oper.forceActiveFocus()
                 }
@@ -94,6 +103,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "9"
                     oper.forceActiveFocus()
                 }
@@ -105,6 +117,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += " + "
                     oper.forceActiveFocus()
                 }
@@ -116,6 +131,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "4"
                     oper.forceActiveFocus()
                 }
@@ -127,6 +145,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "5"
                     oper.forceActiveFocus()
                 }
@@ -138,6 +159,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "6"
                     oper.forceActiveFocus()
                 }
@@ -149,6 +173,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += " - "
                     oper.forceActiveFocus()
                 }
@@ -160,6 +187,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "1"
                     oper.forceActiveFocus()
                 }
@@ -171,6 +201,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "2"
                     oper.forceActiveFocus()
                 }
@@ -182,6 +215,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "3"
                     oper.forceActiveFocus()
                 }
@@ -193,6 +229,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += " * "
                     oper.forceActiveFocus()
                 }
@@ -215,6 +254,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += "0"
                     oper.forceActiveFocus()
                 }
@@ -226,6 +268,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     Calculator.input_string = oper.text
                     var result = Calculator.calculate();
                     var resultStr = result.toString();
@@ -240,6 +285,9 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                        oper.text = "";
+                    }
                     oper.text += " / "
                     oper.forceActiveFocus()
                 }
