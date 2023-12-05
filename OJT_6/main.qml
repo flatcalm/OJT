@@ -31,11 +31,12 @@ Window {
 
             Keys.onPressed: {
                 // 숫자와 연산자가 아닌 경우 clear
-                if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) && event.key !== Qt.Key_Equal) {
+                if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) && event.key !== Qt.Key_Equal
+                        && event.key !== Qt.Key_0 && event.key !== Qt.Key_Space) {
                     oper.text = "";
                 }
                 // 결과값 0일 때 입력 시 0 지우기
-                else if (oper.text == "0") {
+                else if (oper.text == "0" && event.key !== Qt.Key_Space) {
                     oper.text = "";
                 }
                 // = 키를 누르면 바로 계산
@@ -78,8 +79,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "7"
-                    oper.forceActiveFocus()
+                    oper.text += "7";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -92,8 +93,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "8"
-                    oper.forceActiveFocus()
+                    oper.text += "8";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -106,8 +107,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "9"
-                    oper.forceActiveFocus()
+                    oper.text += "9";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -117,11 +118,11 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/)) {
                         oper.text = "";
                     }
-                    oper.text += " + "
-                    oper.forceActiveFocus()
+                    oper.text += " + ";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -134,8 +135,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "4"
-                    oper.forceActiveFocus()
+                    oper.text += "4";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -148,8 +149,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "5"
-                    oper.forceActiveFocus()
+                    oper.text += "5";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -162,8 +163,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "6"
-                    oper.forceActiveFocus()
+                    oper.text += "6";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -173,11 +174,11 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/)) {
                         oper.text = "";
                     }
-                    oper.text += " - "
-                    oper.forceActiveFocus()
+                    oper.text += " - ";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -190,8 +191,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "1"
-                    oper.forceActiveFocus()
+                    oper.text += "1";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -204,8 +205,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "2"
-                    oper.forceActiveFocus()
+                    oper.text += "2";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -218,8 +219,8 @@ Window {
                     if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
                         oper.text = "";
                     }
-                    oper.text += "3"
-                    oper.forceActiveFocus()
+                    oper.text += "3";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -229,11 +230,11 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/)) {
                         oper.text = "";
                     }
-                    oper.text += " * "
-                    oper.forceActiveFocus()
+                    oper.text += " * ";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -243,8 +244,8 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    oper.text = ""
-                    oper.forceActiveFocus()
+                    oper.text = "";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -254,11 +255,11 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/)) {
                         oper.text = "";
                     }
-                    oper.text += "0"
-                    oper.forceActiveFocus()
+                    oper.text += "0";
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -268,14 +269,14 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/)) {
                         oper.text = "";
                     }
-                    Calculator.input_string = oper.text
+                    Calculator.input_string = oper.text;
                     var result = Calculator.calculate();
                     var resultStr = result.toString();
                     oper.text = resultStr;
-                    oper.forceActiveFocus()
+                    oper.forceActiveFocus();
                 }
             }
 
@@ -285,11 +286,11 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 onClicked: {
-                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/) || oper.text == "0") {
+                    if (!oper.text.match(/^[\d\+\-\*\/\s]+$/)) {
                         oper.text = "";
                     }
-                    oper.text += " / "
-                    oper.forceActiveFocus()
+                    oper.text += " / ";
+                    oper.forceActiveFocus();
                 }
             }
 
